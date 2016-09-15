@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://baosight" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://baosight" xmlns:intf="http://baosight" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://baosight" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Message">
+    <sequence>
+     <element name="job_code" nillable="true" type="xsd:string"/>
+     <element name="org_code" nillable="true" type="xsd:string"/>
+     <element name="psid" nillable="true" type="xsd:string"/>
+     <element name="pstatus" nillable="true" type="xsd:string"/>
+     <element name="syscode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="User">
+    <sequence>
+     <element name="birthday" nillable="true" type="xsd:string"/>
+     <element name="dr" nillable="true" type="xsd:string"/>
+     <element name="id" nillable="true" type="xsd:string"/>
+     <element name="indutydate" nillable="true" type="xsd:string"/>
+     <element name="job_code" nillable="true" type="xsd:string"/>
+     <element name="mail" nillable="true" type="xsd:string"/>
+     <element name="old_org_code" nillable="true" type="xsd:string"/>
+     <element name="org_code" nillable="true" type="xsd:string"/>
+     <element name="outdutydate" nillable="true" type="xsd:string"/>
+     <element name="phone" nillable="true" type="xsd:string"/>
+     <element name="pk_corp" nillable="true" type="xsd:string"/>
+     <element name="pk_deptdoc" nillable="true" type="xsd:string"/>
+     <element name="pk_psnbasdoc" nillable="true" type="xsd:string"/>
+     <element name="psid" nillable="true" type="xsd:string"/>
+     <element name="psnclass" nillable="true" type="xsd:string"/>
+     <element name="psnclassname" nillable="true" type="xsd:string"/>
+     <element name="psnname" nillable="true" type="xsd:string"/>
+     <element name="psntype" nillable="true" type="xsd:string"/>
+     <element name="remark1" nillable="true" type="xsd:string"/>
+     <element name="remark2" nillable="true" type="xsd:string"/>
+     <element name="responsetime" nillable="true" type="xsd:string"/>
+     <element name="sex" nillable="true" type="xsd:string"/>
+     <element name="ts" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="RequestMessage">
+    <sequence>
+     <element name="message" nillable="true" type="impl:Message"/>
+     <element name="noun" nillable="true" type="xsd:string"/>
+     <element name="user" nillable="true" type="impl:User"/>
+     <element name="verb" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="input" type="impl:RequestMessage"/>
+   <complexType name="ErrorMessage">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResponseMessage">
+    <sequence>
+     <element name="content" nillable="true" type="xsd:string"/>
+     <element name="errorMessage" nillable="true" type="impl:ErrorMessage"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="SetDataReturn" type="impl:ResponseMessage"/>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="SetDataRequest">
+
+      <wsdl:part element="impl:input" name="input"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="SetDataResponse">
+
+      <wsdl:part element="impl:SetDataReturn" name="SetDataReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="NoticeInterface">
+
+      <wsdl:operation name="SetData" parameterOrder="input">
+
+         <wsdl:input message="impl:SetDataRequest" name="SetDataRequest"/>
+
+         <wsdl:output message="impl:SetDataResponse" name="SetDataResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="NoticeInterfaceSoapBinding" type="impl:NoticeInterface">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="SetData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="SetDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="SetDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="NoticeInterfaceService">
+
+      <wsdl:port binding="impl:NoticeInterfaceSoapBinding" name="NoticeInterface">
+
+         <wsdlsoap:address location="http://localhost:8080//services/baosight/NoticeInterface"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
