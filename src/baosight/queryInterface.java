@@ -151,7 +151,7 @@ public class queryInterface {
 			 ob=tmpresult.getClass().getField("state").get(tmpresult);
 
         
-			if(ob.toString()=="-1"){
+			if(ob.toString().equals("-1")){
 				return result;
 			}
 			
