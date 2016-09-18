@@ -65,7 +65,6 @@ public class utils {
         try(FileChannel fc = new RandomAccessFile(filepath, "r").getChannel()) {
             MappedByteBuffer byteBuffer = fc.map(FileChannel.MapMode.READ_ONLY, 0,
                     fc.size()).load();
-            System.out.println(byteBuffer.isLoaded());
             result = new byte[(int) fc.size()];
             if (byteBuffer.remaining() > 0) {
                 byteBuffer.get(result, 0, byteBuffer.remaining());
