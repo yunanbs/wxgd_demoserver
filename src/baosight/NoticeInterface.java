@@ -75,7 +75,7 @@ public class NoticeInterface {
 			str = String.format(str, tablename, sb.toString());
 
 			if (pstatus == "1" || pstatus == "2") {
-				sqlstodo = queryInterface.inibasedb(noun, "HRS", 0, pkval, "", "");
+				sqlstodo = queryInterface.getdbsql(noun, "HRS", 0, pkval, "", "");
 			}
 			sqlstodo.add(0,str);
 			JSONObject jsresult =  dbhelpser.Excutesql(utils.getpropertieval("s_dbname", "dbconfig.properties"), utils.getpropertieval("s_dbuser", "dbconfig.properties"), utils.getpropertieval("s_dbpassword", "dbconfig.properties"), "", sqlstodo, "");
