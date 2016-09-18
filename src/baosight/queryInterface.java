@@ -204,6 +204,7 @@ public class queryInterface {
 					cname = cname.replace("_","");//移除列名中的_
 					cols.add(cname);//添加列名
 					String tval = obj.getClass().getField(cname).get(obj)==null?"":obj.getClass().getField(cname).get(obj).toString();//获取值
+
 					//验证值是否为时间格式
 					Pattern rex = Pattern.compile("^(((([0-9]{2}(([02468][048])|([13579][26]))))(-)(2|02)(-)(([1-9])|([0][1-9])|([1-2][0-9])))|((([0-9]{2}([02468][123579])|([13579][01345789])))(-)(2|02)(-)(([1-9])|([0][1-9])|([1][0-9])([2][0-8])))|(([0-9]{4})(-)((([0]{0,1}(1|3|5|7|8))|(10|12))(-)(([1-9])|([0][1-9])|([1-2][0-9])|30|31)))|(([0-9]{4})(-)((([0]{0,1}(4|6|9))|11))(-)(([1-9])|([0][1-9])|([1-2][0-9])|30)))\\s(20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d$");
 //					Pattern rex = Pattern.compile("(\\d{1,4}[-|\\/|年|\\.]\\d{1,2}[-|\\/|月|\\.]\\d{1,2}([日|号])?(\\s)*(\\d{1,2}([点|时])?((:)?\\d{1,2}(分)?((:)?\\d{1,2}(秒)?)?)?)?(\\s)*(PM|AM)?)", Pattern.CASE_INSENSITIVE|Pattern.MULTILINE);
@@ -215,13 +216,13 @@ public class queryInterface {
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				cols.add("dataoptime");//添加操作时间列
 				cols.add("dataflag");//添加数据标记列
-				cols.add("bsbak1");//添加预留列1
-				cols.add("bsbak2");//添加预留列2
+//				cols.add("bsbak1");//添加预留列1
+//				cols.add("bsbak2");//添加预留列2
 
 				vals.add(String.format("timestamp '%s'",df.format(new Date())));//获取系统时间
 				vals.add("'1'");//数据标记 默认1
-				vals.add("''");//预留 默认空
-				vals.add("''");//预留 默认空
+//				vals.add("''");//预留 默认空
+//				vals.add("''");//预留 默认空
 
 				String s_vals=StringUtils.join(vals, ",");//组装值
 				String s_cols=StringUtils.join(cols, ",");//组装列名
