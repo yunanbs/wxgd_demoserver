@@ -8,13 +8,13 @@
 package jobserver;
 
 public class ResponseMessage  implements java.io.Serializable {
-    private java.lang.String content;
+    public java.lang.String content;
 
-    private jobserver.ErrorMessage errorMessage;
+    public jobserver.ErrorMessage errorMessage;
 
-    private jobserver.Result[] result;
+    public jobserver.Result[] result;
 
-    private java.lang.String state;
+    public java.lang.String state;
 
     public ResponseMessage() {
     }

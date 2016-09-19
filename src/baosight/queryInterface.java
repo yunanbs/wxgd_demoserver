@@ -18,23 +18,24 @@ import baosight.utils;
 import com.sun.org.glassfish.gmbal.Description;
 
 import net.sf.json.*;
+import org.apache.commons.lang3.SystemUtils;
 import userservice.*;
 import userservice.RequestMessage;
 
 
 public class queryInterface {
 
-	public String IniOrg(){
+	public String IniBaseData(String basetype,String basetable){
 		String sresult="";
-		List<String> sqls=getdbsql("org","HRS",1,"","","");
+		List<String> sqls=getdbsql(basetype,"HRS",1,"","","");
 
 		if(sqls==null){
 			return  sresult;
 		}
 
-		sqls.add(0, String.format(utils.getpropertieval("sql.delete", "sqls.properties"), "orgtable",""));//添加删除语句
+		sqls.add(0, String.format(utils.getpropertieval("delete", "sqls.properties"), basetable,""));//添加删除语句
 
-		JSONObject dbresult =  dbhelpser.Excutesql(utils.getpropertieval("jdbc.url", "/db.properties"), utils.getpropertieval("jdbc.user", "db.properties"), utils.getpropertieval("jdbc.password", "db.properties"), "", sqls, "");//执行数据库操作
+		JSONObject dbresult =  dbhelpser.Excutesql(utils.getpropertieval("s_dbname", "dbconfig.properties"), utils.getpropertieval("s_dbuser", "dbconfig.properties"), utils.getpropertieval("s_dbpassword", "dbconfig.properties"), null, sqls, null);//执行数据库操作
 
 		//判断执行结果
 		if(dbresult.get("data")!=null){
@@ -45,14 +46,6 @@ public class queryInterface {
 
 		return sresult;
 	}
-
-	public String Test(String infotype,String syscode,int opertype,String infocode,String userid,String orgid){
-		List<String> tmp= getdbsql(infotype,syscode,opertype,infocode,userid,orgid);
-
-		return  String.valueOf(tmp.size());
-	}
-
-
 
 	/*inibasedb()方法用于查询接口或者通知接口,传值后同步双方的库中的数据
 	 * infotype:job,org,user
@@ -84,11 +77,11 @@ public class queryInterface {
 		switch (infotype)//定义反射对象的类名
 		{
 			case "job":
-				classname = "orgserver.GetDataImplService";
-				user = "orgserver.User";
-				message = "orgserver.Message";
-				reqmessage = "orgserver.RequestMessage";
-				tablename = "posttable";
+				classname = "jobserver.GetDataImplServiceLocator";
+				user = "jobserver.User";
+				message = "jobserver.Message";
+				reqmessage = "jobserver.RequestMessage";
+				tablename = "jobtable";
 
 				noun = "allJobList";
 				obj_code = "job_code";
@@ -201,16 +194,27 @@ public class queryInterface {
 						continue;//处理下一个属性
 					}
 
-					cname = cname.replace("_","");//移除列名中的_
-					cols.add(cname);//添加列名
 					String tval = obj.getClass().getField(cname).get(obj)==null?"":obj.getClass().getField(cname).get(obj).toString();//获取值
 
 					//验证值是否为时间格式
-					Pattern rex = Pattern.compile("^(((([0-9]{2}(([02468][048])|([13579][26]))))(-)(2|02)(-)(([1-9])|([0][1-9])|([1-2][0-9])))|((([0-9]{2}([02468][123579])|([13579][01345789])))(-)(2|02)(-)(([1-9])|([0][1-9])|([1][0-9])([2][0-8])))|(([0-9]{4})(-)((([0]{0,1}(1|3|5|7|8))|(10|12))(-)(([1-9])|([0][1-9])|([1-2][0-9])|30|31)))|(([0-9]{4})(-)((([0]{0,1}(4|6|9))|11))(-)(([1-9])|([0][1-9])|([1-2][0-9])|30)))\\s(20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d$");
-//					Pattern rex = Pattern.compile("(\\d{1,4}[-|\\/|年|\\.]\\d{1,2}[-|\\/|月|\\.]\\d{1,2}([日|号])?(\\s)*(\\d{1,2}([点|时])?((:)?\\d{1,2}(分)?((:)?\\d{1,2}(秒)?)?)?)?(\\s)*(PM|AM)?)", Pattern.CASE_INSENSITIVE|Pattern.MULTILINE);
+//					Pattern rex = Pattern.compile("^(((([0-9]{2}(([02468][048])|([13579][26]))))(-)(2|02)(-)(([1-9])|([0][1-9])|([1-2][0-9])))|((([0-9]{2}([02468][123579])|([13579][01345789])))(-)(2|02)(-)(([1-9])|([0][1-9])|([1][0-9])([2][0-8])))|(([0-9]{4})(-)((([0]{0,1}(1|3|5|7|8))|(10|12))(-)(([1-9])|([0][1-9])|([1-2][0-9])|30|31)))|(([0-9]{4})(-)((([0]{0,1}(4|6|9))|11))(-)(([1-9])|([0][1-9])|([1-2][0-9])|30)))\\s(20|21|22|23|[0-1]?\\d):[0-5]?\\d:[0-5]?\\d$");
+					Pattern rex = Pattern.compile("(\\d{1,4}[-|\\/|年|\\.]\\d{1,2}[-|\\/|月|\\.]\\d{1,2}([日|号])?(\\s)*(\\d{1,2}([点|时])?((:)?\\d{1,2}(分)?((:)?\\d{1,2}(秒)?)?)?)?(\\s)*(PM|AM)?)", Pattern.CASE_INSENSITIVE|Pattern.MULTILINE);
 					Matcher matcher = rex.matcher(tval);
-					tval = matcher.matches()?String.format("timestamp '%s'",tval):String.format("'%s'",tval);//时间格式特殊处理
-					vals.add("'"+tval+"'");//添加值
+					if(matcher.matches())
+					{
+						if(tval.contains(":")){
+							tval = String.format("timestamp '%s'",tval);
+						}else{
+							tval = String.format("date '%s'",tval);
+						}
+					}else{
+						tval = String.format("'%s'",tval);//时间格式特殊处理
+					}
+
+					vals.add(tval);//添加值
+
+					cname = cname.replace("_","");//移除列名中的_
+					cols.add(cname);//添加列名
 				}
 
 				SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

@@ -8,9 +8,9 @@
 package jobserver;
 
 public class User  implements java.io.Serializable {
-    private java.lang.String orgId;
+    public java.lang.String orgId;
 
-    private java.lang.String userId;
+    public java.lang.String userId;
 
     public User() {
     }

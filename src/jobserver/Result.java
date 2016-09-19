@@ -8,33 +8,33 @@
 package jobserver;
 
 public class Result  implements java.io.Serializable {
-    private java.lang.String duty_code;
+    public java.lang.String duty_code;
 
-    private java.lang.String job_code;
+    public java.lang.String job_code;
 
-    private java.lang.String job_level;
+    public java.lang.String job_level;
 
-    private java.lang.String job_name;
+    public java.lang.String job_name;
 
-    private java.lang.String job_short_name;
+    public java.lang.String job_short_name;
 
-    private java.lang.String org_code;
+    public java.lang.String org_code;
 
-    private java.lang.String org_dept;
+    public java.lang.String org_dept;
 
-    private java.lang.String remark1;
+    public java.lang.String remark1;
 
-    private java.lang.String remark2;
+    public java.lang.String remark2;
 
-    private java.lang.String responsetime;
+    public java.lang.String responsetime;
 
-    private java.lang.Integer status;
+    public java.lang.Integer status;
 
-    private java.lang.String status_date;
+    public java.lang.String status_date;
 
-    private java.lang.String suporior;
+    public java.lang.String suporior;
 
-    private java.lang.String uni_org_code;
+    public java.lang.String uni_org_code;
 
     public Result() {
     }

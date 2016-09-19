@@ -24,6 +24,7 @@
   <handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
   <handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
   <handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+
   <service name="AdminService" provider="java:MSG">
     <parameter name="allowedMethods" value="AdminService"/>
     <parameter name="enableRemoteAdmin" value="false"/>
@@ -42,10 +43,31 @@
     <parameter name="className" value="org.apache.axis.monitor.SOAPMonitorService"/>
   </service>
 
-  <service name="HelloWorldService" provider="java:RPC">
+  <service name="NoticeService" provider="java:RPC">
     <parameter name="allowedMethods" value="*"/>
-    <parameter name="className" value="example.HelloWorld"/>
-  </service>
+    <parameter name="className" value="baosight.NoticeInterface"/>
+
+    <beanMapping languageSpecificType="java:baosight.User"
+                 qname="ns1:User"
+                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+    />
+    <beanMapping languageSpecificType="java:baosight.RequestMessage"
+                 qname="ns1:RequestMessage"
+                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+    />
+    <beanMapping languageSpecificType="java:baosight.Message"
+                 qname="ns1:Message"
+                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+    />
+    <beanMapping languageSpecificType="java:baosight.ResponseMessage"
+                 qname="ns1:ResponseMessage"
+                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+    />
+    <beanMapping languageSpecificType="java:baosight.ErrorMessage"
+                 qname="ns1:ErrorMessage"
+                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+    />
+</service>
 
   <service name="QueryService" provider="java:RPC">
     <parameter name="allowedMethods" value="*"/>

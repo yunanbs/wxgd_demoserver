@@ -8,11 +8,11 @@
 package jobserver;
 
 public class Message  implements java.io.Serializable {
-    private java.lang.String job_code;
+    public java.lang.String job_code;
 
-    private java.lang.Integer oper_type;
+    public java.lang.Integer oper_type;
 
-    private java.lang.String syscode;
+    public java.lang.String syscode;
 
     public Message() {
     }

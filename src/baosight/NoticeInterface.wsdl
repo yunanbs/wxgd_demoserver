@@ -11,33 +11,13 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
      <element name="psid" nillable="true" type="xsd:string"/>
      <element name="pstatus" nillable="true" type="xsd:string"/>
      <element name="syscode" nillable="true" type="xsd:string"/>
+     <element name="userId" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
    <complexType name="User">
     <sequence>
-     <element name="birthday" nillable="true" type="xsd:string"/>
-     <element name="dr" nillable="true" type="xsd:string"/>
-     <element name="id" nillable="true" type="xsd:string"/>
-     <element name="indutydate" nillable="true" type="xsd:string"/>
-     <element name="job_code" nillable="true" type="xsd:string"/>
-     <element name="mail" nillable="true" type="xsd:string"/>
-     <element name="old_org_code" nillable="true" type="xsd:string"/>
-     <element name="org_code" nillable="true" type="xsd:string"/>
-     <element name="outdutydate" nillable="true" type="xsd:string"/>
-     <element name="phone" nillable="true" type="xsd:string"/>
-     <element name="pk_corp" nillable="true" type="xsd:string"/>
-     <element name="pk_deptdoc" nillable="true" type="xsd:string"/>
-     <element name="pk_psnbasdoc" nillable="true" type="xsd:string"/>
-     <element name="psid" nillable="true" type="xsd:string"/>
-     <element name="psnclass" nillable="true" type="xsd:string"/>
-     <element name="psnclassname" nillable="true" type="xsd:string"/>
-     <element name="psnname" nillable="true" type="xsd:string"/>
-     <element name="psntype" nillable="true" type="xsd:string"/>
-     <element name="remark1" nillable="true" type="xsd:string"/>
-     <element name="remark2" nillable="true" type="xsd:string"/>
-     <element name="responsetime" nillable="true" type="xsd:string"/>
-     <element name="sex" nillable="true" type="xsd:string"/>
-     <element name="ts" nillable="true" type="xsd:string"/>
+     <element name="userId" nillable="true" type="xsd:string"/>
+     <element name="orgId" nillable="true" type="xsd:string"/>
     </sequence>
    </complexType>
    <complexType name="RequestMessage">

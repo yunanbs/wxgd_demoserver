@@ -8,13 +8,13 @@
 package jobserver;
 
 public class RequestMessage  implements java.io.Serializable {
-    private jobserver.Message message;
+    public jobserver.Message message;
 
-    private java.lang.String noun;
+    public java.lang.String noun;
 
-    private jobserver.User user;
+    public jobserver.User user;
 
-    private java.lang.String verb;
+    public java.lang.String verb;
 
     public RequestMessage() {
     }

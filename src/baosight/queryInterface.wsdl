@@ -4,69 +4,33 @@
 Built on Apr 22, 2006 (06:55:48 PDT)-->
  <wsdl:types>
   <schema elementFormDefault="qualified" targetNamespace="http://baosight" xmlns="http://www.w3.org/2001/XMLSchema">
-   <element name="infotype" type="xsd:string"/>
-   <element name="syscode" type="xsd:string"/>
-   <element name="opertype" type="xsd:int"/>
-   <element name="infocode" type="xsd:string"/>
-   <element name="userid" type="xsd:string"/>
-   <element name="orgid" type="xsd:string"/>
-   <complexType name="ArrayOf_xsd_anyType">
-    <sequence>
-     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
-    </sequence>
-   </complexType>
-   <element name="TestReturn" type="impl:ArrayOf_xsd_anyType"/>
-   <element name="IniOrgReturn" type="xsd:string"/>
+   <element name="basetype" type="xsd:string"/>
+   <element name="basetable" type="xsd:string"/>
+   <element name="IniBaseDataReturn" type="xsd:string"/>
   </schema>
  </wsdl:types>
 
-   <wsdl:message name="IniOrgResponse">
+   <wsdl:message name="IniBaseDataResponse">
 
-      <wsdl:part element="impl:IniOrgReturn" name="IniOrgReturn"/>
-
-   </wsdl:message>
-
-   <wsdl:message name="TestRequest">
-
-      <wsdl:part element="impl:infotype" name="infotype"/>
-
-      <wsdl:part element="impl:syscode" name="syscode"/>
-
-      <wsdl:part element="impl:opertype" name="opertype"/>
-
-      <wsdl:part element="impl:infocode" name="infocode"/>
-
-      <wsdl:part element="impl:userid" name="userid"/>
-
-      <wsdl:part element="impl:orgid" name="orgid"/>
+      <wsdl:part element="impl:IniBaseDataReturn" name="IniBaseDataReturn"/>
 
    </wsdl:message>
 
-   <wsdl:message name="IniOrgRequest">
+   <wsdl:message name="IniBaseDataRequest">
 
-   </wsdl:message>
+      <wsdl:part element="impl:basetype" name="basetype"/>
 
-   <wsdl:message name="TestResponse">
-
-      <wsdl:part element="impl:TestReturn" name="TestReturn"/>
+      <wsdl:part element="impl:basetable" name="basetable"/>
 
    </wsdl:message>
 
    <wsdl:portType name="queryInterface">
 
-      <wsdl:operation name="Test" parameterOrder="infotype syscode opertype infocode userid orgid">
+      <wsdl:operation name="IniBaseData" parameterOrder="basetype basetable">
 
-         <wsdl:input message="impl:TestRequest" name="TestRequest"/>
+         <wsdl:input message="impl:IniBaseDataRequest" name="IniBaseDataRequest"/>
 
-         <wsdl:output message="impl:TestResponse" name="TestResponse"/>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="IniOrg">
-
-         <wsdl:input message="impl:IniOrgRequest" name="IniOrgRequest"/>
-
-         <wsdl:output message="impl:IniOrgResponse" name="IniOrgResponse"/>
+         <wsdl:output message="impl:IniBaseDataResponse" name="IniBaseDataResponse"/>
 
       </wsdl:operation>
 
@@ -76,35 +40,17 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
       <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
 
-      <wsdl:operation name="Test">
+      <wsdl:operation name="IniBaseData">
 
          <wsdlsoap:operation soapAction=""/>
 
-         <wsdl:input name="TestRequest">
+         <wsdl:input name="IniBaseDataRequest">
 
             <wsdlsoap:body use="literal"/>
 
          </wsdl:input>
 
-         <wsdl:output name="TestResponse">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:output>
-
-      </wsdl:operation>
-
-      <wsdl:operation name="IniOrg">
-
-         <wsdlsoap:operation soapAction=""/>
-
-         <wsdl:input name="IniOrgRequest">
-
-            <wsdlsoap:body use="literal"/>
-
-         </wsdl:input>
-
-         <wsdl:output name="IniOrgResponse">
+         <wsdl:output name="IniBaseDataResponse">
 
             <wsdlsoap:body use="literal"/>
 
