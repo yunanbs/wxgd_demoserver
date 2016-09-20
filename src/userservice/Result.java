@@ -7,6 +7,8 @@
 
 package userservice;
 
+import javax.activation.DataHandler;
+
 public class Result  implements java.io.Serializable {
     public java.lang.String responsetime;
 
@@ -55,6 +57,7 @@ public class Result  implements java.io.Serializable {
     public java.lang.String dr;
 
     public byte[] dataHandler;
+
 
     public Result() {
     }

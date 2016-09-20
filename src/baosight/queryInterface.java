@@ -3,6 +3,9 @@ package baosight;
 
 
 import java.lang.reflect.Field;
+import java.lang.reflect.*;
+import javax.activation.DataHandler;
+import javax.mail.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -143,7 +146,8 @@ public class queryInterface {
 			messageobj.getClass().getField(obj_code).set(messageobj, infocode);//创建消息对象
 
 			if(infotype.equalsIgnoreCase("user")){//如果请求用户对象
-				int ifphoto = opertype==1?0:1;//判断是否增量 增量的 ifphoto为1
+//				int ifphoto = opertype==1?0:1;//判断是否增量 增量的 ifphoto为1
+				int ifphoto = 0;
 				messageobj.getClass().getField("ifPhoto").set(messageobj, ifphoto);//设置ifphoto标记
 			}
 			reqmessageobj.getClass().getField("message").set(reqmessageobj, messageobj);//设置message
@@ -187,8 +191,8 @@ public class queryInterface {
 						if(fresult==null){
 							continue;//文件落地失败跳过该属性的处理
 						}
-						cols.add("photopath");//添加photopath列
-						cols.add("photourl");//添加photourl列
+						cols.add("filepath");//添加photopath列
+						cols.add("fileurl");//添加photourl列
 						vals.add(basefilepath+"\\"+filename);//设置photopath值
 						vals.add(basefileurl+"/"+filename);//设置photourl值
 						continue;//处理下一个属性
