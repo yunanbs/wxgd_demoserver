@@ -55,7 +55,7 @@ public class dbhelpser {
 				Statement stmt = con.createStatement()//创建statement对象
 		)
 	    {
-			if(sql!=null){
+			if(sql!=null&&!sql.equals("")){
 	        	intresult = stmt.executeUpdate(sql);//执行单条语句
 	        	result.accumulate("error", null);
 	        	result.accumulate("data", String.valueOf(intresult));//返回记录数
@@ -83,7 +83,7 @@ public class dbhelpser {
 				}
 			}
 
-	        if(datasql!=null){
+	        if(datasql!=null&&!datasql.equals("")){
 				ResultSet dbresult = stmt.executeQuery(datasql);//获取查询结果
 	        	JSONArray l_data = dbhelpser.extractJSONArray(dbresult);//resultset转json对象
 	        	result.accumulate("error", null);

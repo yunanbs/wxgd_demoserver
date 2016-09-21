@@ -9,6 +9,7 @@ import javax.activation.DataHandler;
 import javax.mail.*;
 
 import baosight.utils;
+import userserver.ResponseMessage;
 
 
 /**
@@ -47,12 +48,12 @@ public class HelloWorld {
   public String getuser(){
     String result = "";
     try{
-      userservice.GetDataImplServiceLocator server = new userservice.GetDataImplServiceLocator();
-      userservice.IGetData client = server.getGetDataImplPort();
-      userservice.User user = new userservice.User("","");
-      userservice.Message msg = new userservice.Message(0,1,"","HRS");
-      userservice.RequestMessage params = new userservice.RequestMessage(msg,"allPersonList",user,"Get");
-      userservice.ResponseMessage cresult = client.getData(params);
+      userserver.GetDataImplServiceLocator server = new userserver.GetDataImplServiceLocator();
+      userserver.IGetData client = server.getGetDataImplPort();
+      userserver.User user = new userserver.User("","");
+      userserver.Message msg = new userserver.Message(1,0,"01933","HRS");
+      userserver.RequestMessage params = new userserver.RequestMessage(msg,"allPersonList",user,"Get");
+      userserver.ResponseMessage cresult =client.getData(params);
 
 
     }catch (Exception ex){

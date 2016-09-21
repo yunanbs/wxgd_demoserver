@@ -43,6 +43,11 @@
     <parameter name="className" value="org.apache.axis.monitor.SOAPMonitorService"/>
   </service>
 
+  <service name="ex" provider="java:RPC">
+    <parameter name="allowedMethods" value="*"/>
+    <parameter name="className" value="example.HelloWorld"/>
+  </service>
+
   <service name="NoticeService" provider="java:RPC">
     <parameter name="allowedMethods" value="*"/>
     <parameter name="className" value="baosight.NoticeInterface"/>

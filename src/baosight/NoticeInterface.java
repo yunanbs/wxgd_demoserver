@@ -79,6 +79,8 @@ public class NoticeInterface {
 					sqlstodo = queryInterface.getdbsql(noun, "HRS", 0, pkval, "", "");
 				}
 
+
+
 				if (verb.equalsIgnoreCase("CREATE") && noun.equalsIgnoreCase("account")) {
 					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 

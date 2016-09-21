@@ -22,8 +22,6 @@ import com.sun.org.glassfish.gmbal.Description;
 
 import net.sf.json.*;
 import org.apache.commons.lang3.SystemUtils;
-import userservice.*;
-import userservice.RequestMessage;
 
 
 public class queryInterface {
@@ -102,10 +100,10 @@ public class queryInterface {
 				break;
 
 			case "user":
-				classname = "userservice.GetDataImplServiceLocator";
-				user = "userservice.User";
-				message = "userservice.Message";
-				reqmessage = "userservice.RequestMessage";
+				classname = "userserver.GetDataImplServiceLocator";
+				user = "userserver.User";
+				message = "userserver.Message";
+				reqmessage = "userserver.RequestMessage";
 				tablename = "usertable";
 
 				noun = "allPersonList";
@@ -146,8 +144,8 @@ public class queryInterface {
 			messageobj.getClass().getField(obj_code).set(messageobj, infocode);//创建消息对象
 
 			if(infotype.equalsIgnoreCase("user")){//如果请求用户对象
-//				int ifphoto = opertype==1?0:1;//判断是否增量 增量的 ifphoto为1
-				int ifphoto = 0;
+				int ifphoto = opertype==1?0:1;//判断是否增量 增量的 ifphoto为1
+//				int ifphoto = 0;
 				messageobj.getClass().getField("ifPhoto").set(messageobj, ifphoto);//设置ifphoto标记
 			}
 			reqmessageobj.getClass().getField("message").set(reqmessageobj, messageobj);//设置message
