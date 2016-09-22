@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='utf-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.service.userInfoquery.mdms.soft.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="GetDataImplService" targetNamespace="http://impl.service.userInfoquery.mdms.soft.com/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://impl.service.userInfoquery.mdms.soft.com/" elementFormDefault="unqualified" targetNamespace="http://impl.service.userInfoquery.mdms.soft.com/" version="1.0">
+<xs:element name="getData" type="tns:getData"></xs:element>
+<xs:element name="getDataById" type="tns:getDataById"></xs:element>
+<xs:element name="getDataByIdResponse" type="tns:getDataByIdResponse"></xs:element>
+<xs:element name="getDataResponse" type="tns:getDataResponse"></xs:element>
+<xs:complexType name="getDataById">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:requestMessage"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="requestMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="tns:message"></xs:element>
+      <xs:element minOccurs="0" name="noun" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="user" type="tns:user"></xs:element>
+      <xs:element minOccurs="0" name="verb" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="message">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="module_type" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="oper_type" type="xs:int"></xs:element>
+      <xs:element minOccurs="0" name="psnstr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="sysCode" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="user">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="orgId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="userId" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataByIdResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseMessage"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="responseMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="content" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="errorMessage" type="tns:errorMessage"></xs:element>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="result" nillable="true" type="tns:result"></xs:element>
+      <xs:element minOccurs="0" name="state" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="errorMessage">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="errorCode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="result">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="addr" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="birthday" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="joinworkdate" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="mail" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="org_code" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="org_name" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="phone" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="photo" type="xs:base64Binary"></xs:element>
+      <xs:element minOccurs="0" name="pk_psnbasdoc" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="psnid" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="psnname" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="remark1" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="remark2" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="responsetime" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="sex" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:requestMessage"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="getDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseMessage"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getDataResponse">
+    <wsdl:part element="tns:getDataResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataByIdResponse">
+    <wsdl:part element="tns:getDataByIdResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getData">
+    <wsdl:part element="tns:getData" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDataById">
+    <wsdl:part element="tns:getDataById" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="IGetData">
+    <wsdl:operation name="getDataById">
+      <wsdl:input message="tns:getDataById" name="getDataById">
+    </wsdl:input>
+      <wsdl:output message="tns:getDataByIdResponse" name="getDataByIdResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <wsdl:input message="tns:getData" name="getData">
+    </wsdl:input>
+      <wsdl:output message="tns:getDataResponse" name="getDataResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetDataImplServiceSoapBinding" type="tns:IGetData">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="getDataById">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getDataById">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getDataByIdResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getData">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="getData">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="getDataResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetDataImplService">
+    <wsdl:port binding="tns:GetDataImplServiceSoapBinding" name="GetDataImplPort">
+      <soap:address location="http://10.1.13.28:7003/wxwebservice/cxf/UserInfoService"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
