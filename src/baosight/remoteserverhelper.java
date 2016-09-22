@@ -125,9 +125,7 @@ public class remoteserverhelper {
             messageobj.getClass().getField(obj_code).set(messageobj, infocode);//创建消息对象
 
             if (infotype.equalsIgnoreCase("user")) {//如果请求用户对象
-//                int ifphoto = opertype==1?0:1;//判断是否增量 增量的 ifphoto为1
-                int ifphoto = 0;//东软基本信息接口无法提供照片，照片需要专门的图片接口 这里只传0
-                messageobj.getClass().getField("ifPhoto").set(messageobj, ifphoto);//设置ifphoto标记
+                messageobj.getClass().getField("ifPhoto").set(messageobj, 0);//设置ifphoto标记 始终未0 东软接口问题
             }
 
             if (infotype.equalsIgnoreCase("pic")) {//如果请求图片对象
@@ -144,24 +142,23 @@ public class remoteserverhelper {
 
             Object[] resultlist = (Object[]) tmpresult.getClass().getField("result").get(tmpresult);//获取调用结果
 
-
             String str = null;
 
             if (infotype.equalsIgnoreCase("pic")) {//处理照片类型
-                String filename="default.png";
-                String filepath = utils.getpropertieval("basefilepath", "pathcfg.properties");
-                String fileurl =utils.getpropertieval("basefileurl", "pathcfg.properties");
-                String filefullname = "";
-                if(resultlist==null||resultlist.length==0||resultlist[0].getClass().getField("photo").get(resultlist[0])==null){
-                    filefullname = filepath+"\\"+filename;
+                String filename="default.png";//定义默认照片名称
+                String filepath = utils.getpropertieval("basefilepath", "pathcfg.properties");//读取文件保存路径
+                String fileurl =utils.getpropertieval("basefileurl", "pathcfg.properties");//读取文件发布路径
+                String filefullname = "";//文件物理路径全名
+                if(resultlist==null||resultlist.length==0||resultlist[0].getClass().getField("photo").get(resultlist[0])==null){//无结果 结果为0 照片不存在 均使用默认图片
+                    filefullname = filepath+"\\"+filename;//组装图片物理路径
                 }else{
                     filename = java.util.UUID.randomUUID().toString().replace("-","")+".png";//生成随机文件名
                     byte[] sourcedata = (byte[])resultlist[0].getClass().getField("photo").get(resultlist[0]);//获取图片字节流
-                    filefullname = baosight.utils.byte2file(filepath,filename,sourcedata);
+                    filefullname = baosight.utils.byte2file(filepath,filename,sourcedata);//文件落地并返回物理路径
                 }
-                fileurl = fileurl+filename;
-                str = utils.getpropertieval("update", "sqls.properties");
-                str = String.format(str,tablename,String.format(" filepath = '%s',fileurl = '%s'",filefullname,fileurl),String.format("psnid = '%s'",infocode));
+                fileurl = fileurl+filename;//组装文件发布路径
+                str = utils.getpropertieval("update", "sqls.properties");//获取更新语句模板
+                str = String.format(str,tablename,String.format(" filepath = '%s',fileurl = '%s'",filefullname,fileurl),String.format("psnid = '%s'",infocode));//生成update语句
                 result.add(str);//添加update语句
             } else {//非图片接口处理
                 for (Object obj : resultlist) {//遍历结果
@@ -177,30 +174,7 @@ public class remoteserverhelper {
                             continue;//_开头的属性跳过
                         }
 
-                        if (cname.equalsIgnoreCase("dataHandler")) {//处理datahandler
-
-//                        region 图片文件处理 移除 需要在其他接口中进行处理
-
-//                        Object sourcebyte = obj.getClass().getField(cname).get(obj);//获取datahandler属性内容
-//
-//                        if(sourcebyte==null){
-//                            continue;//为null的话 跳过
-//                        }
-
-//                        String basefilepath = utils.getpropertieval("basefilepath","pathconfig.properties");//读取文件物理基地址
-//                        String basefileurl = utils.getpropertieval("basefileurl","pathconfig.properties");//读取文件url基地址
-//                        String filename = UUID.randomUUID().toString().replace("-","")+".png";//随机文件名
-//
-//                        String fresult = utils.byte2file(basefilepath,filename,(byte[])sourcebyte);//byte[]落地为文件
-//                        if(fresult==null){
-//                            continue;//文件落地失败跳过该属性的处理
-//                        }
-//                        cols.add("filepath");//添加photopath列
-//                        cols.add("fileurl");//添加photourl列
-//                        vals.add(basefilepath+"\\"+filename);//设置photopath值
-//                        vals.add(basefileurl+"/"+filename);//设置photourl值
-//                        endregion
-
+                        if (cname.equalsIgnoreCase("dataHandler")) {//不处理datahandler
                             continue;//处理下一个属性 照片路径在其他接口中进行处理
                         }
 
@@ -229,13 +203,9 @@ public class remoteserverhelper {
                     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     cols.add("dataoptime");//添加操作时间列
                     cols.add("dataflag");//添加数据标记列
-//				cols.add("bsbak1");//添加预留列1
-//				cols.add("bsbak2");//添加预留列2
 
                     vals.add(String.format("timestamp '%s'", df.format(new Date())));//获取系统时间
                     vals.add("'1'");//数据标记 默认1
-//				vals.add("''");//预留 默认空
-//				vals.add("''");//预留 默认空
 
                     String s_vals = StringUtils.join(vals, ",");//组装值
                     String s_cols = StringUtils.join(cols, ",");//组装列名

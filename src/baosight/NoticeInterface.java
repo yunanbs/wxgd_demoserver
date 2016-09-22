@@ -22,11 +22,9 @@ public class NoticeInterface {
 		baosight.ResponseMessage result = new baosight.ResponseMessage();
 		baosight.ErrorMessage errmsg = null;
 
-
 		if (!verb.equalsIgnoreCase("CREATE") && !verb.equalsIgnoreCase("DELETE")) {
 			errmsg = new baosight.ErrorMessage("301","“动词”有误");
 		}
-
 
 //		 pstatus=1,2,3分别为1：新增2：更新 3：注销
 
@@ -73,24 +71,24 @@ public class NoticeInterface {
 			}
 
 			if (errmsg==null) {
-				List<String> sqlstodo = new ArrayList<String>();
-				String str = utils.getpropertieval("delete", "sqls.properties");
+				List<String> sqlstodo = new ArrayList<String>();//待执行语句列表
+				String str = utils.getpropertieval("delete", "sqls.properties");//获取删除语句
 				str = String.format(str, tablename, String.format(" where %s %s '%s'", pkname, "=", pkval));
-				if (pstatus.equalsIgnoreCase("1") || pstatus.equalsIgnoreCase("2") ) {
-					sqlstodo = remoteserverhelper.getdbsql(noun, "HRS", 0, pkval, "", "");
+				if (pstatus.equalsIgnoreCase("1") || pstatus.equalsIgnoreCase("2") ) {//新增或更新时，需要通过增量接口获取用户的详细信息
+					sqlstodo = remoteserverhelper.getdbsql(noun, "HRS", 0, pkval, "", "");//获取insert语句
 
-					if(noun.equalsIgnoreCase("user")){
-						List<String> picup = remoteserverhelper.getdbsql("pic","HRS",0,pkval,"","");
-						for (String upsql:picup
-							 ) {
-							sqlstodo.add(upsql);
+					if(noun.equalsIgnoreCase("user")){//如果更新对象为user，在新增或更新时，同时进行照片文件的处理
+						List<String> picup = remoteserverhelper.getdbsql("pic","HRS",0,pkval,"","");//获取照片更新语句
+						if(picup!=null){
+							for (String upsql:picup) {
+								sqlstodo.add(upsql);//添加更新语句
+							}
 						}
 					}
 				}
 
-
-				if (verb.equalsIgnoreCase("CREATE") && noun.equalsIgnoreCase("account")) {
-					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				if (verb.equalsIgnoreCase("CREATE") && noun.equalsIgnoreCase("account")) {//新增账号处理
+					SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//获取时间
 
 					List<String> cols = new ArrayList<String>();
 					List<String> vals = new ArrayList<String>();
@@ -105,11 +103,13 @@ public class NoticeInterface {
 					vals.add("'1'");//数据标记 默认1
 					sqlstodo.add(String.format(utils.getpropertieval("insert", "sqls.properties"), tablename, StringUtils.join(cols, ","), StringUtils.join(vals, ",")));
 
-					List<String> picup = remoteserverhelper.getdbsql("pic","HRS",0,pkval,"","");
-					for (String upsql:picup
-							) {
-						sqlstodo.add(upsql);
+					List<String> picup = remoteserverhelper.getdbsql("pic","HRS",0,pkval,"","");//新增账号时，同步更新用户的照片信息
+					if(picup!=null){
+						for (String upsql:picup) {
+							sqlstodo.add(upsql);//添加update语句
+						}
 					}
+
 				}
 				sqlstodo.add(0, str);
 
@@ -135,9 +135,5 @@ public class NoticeInterface {
 		}
 		return result;
 	}
-
-
-
-
 }
 
