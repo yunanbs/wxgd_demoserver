@@ -76,7 +76,7 @@ public class utils {
     }
 
     public static String byte2file(String filepath,String filename,byte[] sourcebyte) {
-        String result = "";
+        String result = null;
 
         File file = null;
         String filefullname = filepath + "\\" + filename;//获取文件全名
@@ -96,6 +96,7 @@ public class utils {
             result = filefullname;
         } catch (Exception e) {
             e.printStackTrace();
+            result = null;
         }
         return result;
     }

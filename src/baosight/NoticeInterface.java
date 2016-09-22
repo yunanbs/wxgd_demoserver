@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 
@@ -76,9 +77,16 @@ public class NoticeInterface {
 				String str = utils.getpropertieval("delete", "sqls.properties");
 				str = String.format(str, tablename, String.format(" where %s %s '%s'", pkname, "=", pkval));
 				if (pstatus.equalsIgnoreCase("1") || pstatus.equalsIgnoreCase("2") ) {
-					sqlstodo = queryInterface.getdbsql(noun, "HRS", 0, pkval, "", "");
-				}
+					sqlstodo = remoteserverhelper.getdbsql(noun, "HRS", 0, pkval, "", "");
 
+					if(noun.equalsIgnoreCase("user")){
+						List<String> picup = remoteserverhelper.getdbsql("pic","HRS",0,pkval,"","");
+						for (String upsql:picup
+							 ) {
+							sqlstodo.add(upsql);
+						}
+					}
+				}
 
 
 				if (verb.equalsIgnoreCase("CREATE") && noun.equalsIgnoreCase("account")) {
@@ -96,6 +104,12 @@ public class NoticeInterface {
 					vals.add(String.format("timestamp '%s'", df.format(new Date())));//获取系统时间
 					vals.add("'1'");//数据标记 默认1
 					sqlstodo.add(String.format(utils.getpropertieval("insert", "sqls.properties"), tablename, StringUtils.join(cols, ","), StringUtils.join(vals, ",")));
+
+					List<String> picup = remoteserverhelper.getdbsql("pic","HRS",0,pkval,"","");
+					for (String upsql:picup
+							) {
+						sqlstodo.add(upsql);
+					}
 				}
 				sqlstodo.add(0, str);
 
@@ -121,6 +135,8 @@ public class NoticeInterface {
 		}
 		return result;
 	}
+
+
 
 
 }
