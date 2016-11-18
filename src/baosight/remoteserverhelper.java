@@ -1,5 +1,7 @@
 package baosight;
 
+import jobserver.*;
+import jobserver.Message;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Field;
@@ -41,6 +43,7 @@ public class remoteserverhelper {
         String noun = "";
         //岗位,组织或人员的编码
         String obj_code = "";
+
 
         switch (infotype)//定义反射对象的类名
         {
@@ -87,6 +90,8 @@ public class remoteserverhelper {
                 noun = "allUserList";
                 obj_code = "psnstr";
 
+            case "ssdd":
+                classname = "sgddbasedataserver.BasicDataImplServiceLocator";
             default:
                 break;
         }
@@ -150,7 +155,7 @@ public class remoteserverhelper {
                 String fileurl =utils.getpropertieval("basefileurl", "pathcfg.properties");//读取文件发布路径
                 String filefullname = "";//文件物理路径全名
                 if(resultlist==null||resultlist.length==0||resultlist[0].getClass().getField("photo").get(resultlist[0])==null){//无结果 结果为0 照片不存在 均使用默认图片
-                    filefullname = filepath+"\\"+filename;//组装图片物理路径
+                    filefullname = filepath+"/"+filename;//组装图片物理路径
                 }else{
                     filename = java.util.UUID.randomUUID().toString().replace("-","")+".png";//生成随机文件名
                     byte[] sourcedata = (byte[])resultlist[0].getClass().getField("photo").get(resultlist[0]);//获取图片字节流

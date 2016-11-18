@@ -43,6 +43,16 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
     </sequence>
    </complexType>
    <element name="SetDataReturn" type="impl:ResponseMessage"/>
+   <element name="datastr" type="xsd:string"/>
+   <element name="objtype" type="xsd:string"/>
+   <element name="opflag" type="xsd:string"/>
+   <element name="huaInterfaceReturn" type="xsd:string"/>
+   <element name="id" type="xsd:string"/>
+   <element name="tablename" type="xsd:string"/>
+   <element name="pkname" type="xsd:string"/>
+   <element name="getobjstrReturn" type="xsd:string"/>
+   <element name="accountid" type="xsd:string"/>
+   <element name="testmd5Return" type="xsd:string"/>
   </schema>
  </wsdl:types>
 
@@ -52,9 +62,53 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
 
    </wsdl:message>
 
+   <wsdl:message name="huaInterfaceResponse">
+
+      <wsdl:part element="impl:huaInterfaceReturn" name="huaInterfaceReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testmd5Response">
+
+      <wsdl:part element="impl:testmd5Return" name="testmd5Return"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getobjstrRequest">
+
+      <wsdl:part element="impl:id" name="id"/>
+
+      <wsdl:part element="impl:tablename" name="tablename"/>
+
+      <wsdl:part element="impl:pkname" name="pkname"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="huaInterfaceRequest">
+
+      <wsdl:part element="impl:datastr" name="datastr"/>
+
+      <wsdl:part element="impl:objtype" name="objtype"/>
+
+      <wsdl:part element="impl:opflag" name="opflag"/>
+
+   </wsdl:message>
+
    <wsdl:message name="SetDataResponse">
 
       <wsdl:part element="impl:SetDataReturn" name="SetDataReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getobjstrResponse">
+
+      <wsdl:part element="impl:getobjstrReturn" name="getobjstrReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="testmd5Request">
+
+      <wsdl:part element="impl:accountid" name="accountid"/>
 
    </wsdl:message>
 
@@ -65,6 +119,30 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          <wsdl:input message="impl:SetDataRequest" name="SetDataRequest"/>
 
          <wsdl:output message="impl:SetDataResponse" name="SetDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="huaInterface" parameterOrder="datastr objtype opflag">
+
+         <wsdl:input message="impl:huaInterfaceRequest" name="huaInterfaceRequest"/>
+
+         <wsdl:output message="impl:huaInterfaceResponse" name="huaInterfaceResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getobjstr" parameterOrder="id tablename pkname">
+
+         <wsdl:input message="impl:getobjstrRequest" name="getobjstrRequest"/>
+
+         <wsdl:output message="impl:getobjstrResponse" name="getobjstrResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="testmd5" parameterOrder="accountid">
+
+         <wsdl:input message="impl:testmd5Request" name="testmd5Request"/>
+
+         <wsdl:output message="impl:testmd5Response" name="testmd5Response"/>
 
       </wsdl:operation>
 
@@ -85,6 +163,60 @@ Built on Apr 22, 2006 (06:55:48 PDT)-->
          </wsdl:input>
 
          <wsdl:output name="SetDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="huaInterface">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="huaInterfaceRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="huaInterfaceResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getobjstr">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getobjstrRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getobjstrResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="testmd5">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="testmd5Request">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="testmd5Response">
 
             <wsdlsoap:body use="literal"/>
 

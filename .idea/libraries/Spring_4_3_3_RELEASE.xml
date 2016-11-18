@@ -1,0 +1,27 @@
+<component name="libraryTable">
+  <library name="Spring-4.3.3.RELEASE" type="spring">
+    <properties version="4.3.3.RELEASE" />
+    <CLASSES>
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-aspects-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-aop-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-beans-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-context-support-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-context-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-instrument-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-expression-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-instrument-tomcat-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-jdbc-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-core-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-jms-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-oxm-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-messaging-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-tx-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-test-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/spring-orm-4.3.3.RELEASE.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://D:/IdeaProjects/ssh/lib/aopalliance-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
