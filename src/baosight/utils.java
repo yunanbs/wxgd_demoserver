@@ -253,12 +253,12 @@ public class utils {
             vals.add("'"+errtype+"'");
             //获取配置文件中的insert语句并拼写
 
-            String sql=String.format(utils.getpropertieval("insert","/config/sqls.properties"),"logtable", join(cols,","),join(vals,","));
+            String sql=String.format(utils.getpropertieval("insert","/baosight/sqls.properties"),"logtable", join(cols,","),join(vals,","));
 
             //解密数据库账号
-            String user = utils.decryptBasedDes(utils.getpropertieval("s_dbuser","/config/dbconfig.properties"));
-            String password = utils.decryptBasedDes(utils.getpropertieval("s_dbpassword","/config/dbconfig.properties"));
-            String dbhost = utils.decryptBasedDes(utils.getpropertieval("s_dbname","/config/dbconfig.properties"));
+            String user = /*utils.decryptBasedDes(*/utils.getpropertieval("s_dbuser","/baosight/dbconfig.properties");
+            String password = /*utils.decryptBasedDes(*/utils.getpropertieval("s_dbpassword","/baosight/dbconfig.properties");
+            String dbhost = /*utils.decryptBasedDes(*/utils.getpropertieval("s_dbname","/baosight/dbconfig.properties");
 
 
 

@@ -54,29 +54,48 @@
 
     <beanMapping languageSpecificType="java:baosight.User"
                  qname="ns1:User"
-                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+                 xmlns:ns1="http://localhost:8090/services/NoticeService"
     />
     <beanMapping languageSpecificType="java:baosight.RequestMessage"
                  qname="ns1:RequestMessage"
-                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+                 xmlns:ns1="http://localhost:8090/services/NoticeService"
     />
     <beanMapping languageSpecificType="java:baosight.Message"
                  qname="ns1:Message"
-                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+                 xmlns:ns1="http://localhost:8090/services/NoticeService"
     />
     <beanMapping languageSpecificType="java:baosight.ResponseMessage"
                  qname="ns1:ResponseMessage"
-                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+                 xmlns:ns1="http://localhost:8090/services/NoticeService"
     />
     <beanMapping languageSpecificType="java:baosight.ErrorMessage"
                  qname="ns1:ErrorMessage"
-                 xmlns:ns1="http://localhost:8080/services/NoticeService"
+                 xmlns:ns1="http://localhost:8090/services/NoticeService"
     />
+
 </service>
 
   <service name="QueryService" provider="java:RPC">
     <parameter name="allowedMethods" value="*"/>
     <parameter name="className" value="baosight.queryInterface"/>
+  </service>
+
+  <service name="ResDongMsg" provider="java:RPC">
+    <parameter name="allowedMethods" value="*"/>
+    <parameter name="className" value="baosight.ResDongMsg"/>
+
+    <beanMapping languageSpecificType="java:baosight.PendingMessage"
+                 qname="ns1:PendingMessage"
+                 xmlns:ns1="http://localhost:8080/services/ResDongMsg"
+    />
+    <beanMapping languageSpecificType="java:baosight.Result"
+                 qname="ns1:Result"
+                 xmlns:ns1="http://localhost:8080/services/ResDongMsg"
+    />
+    <beanMapping languageSpecificType="java:baosight.RequestMessage"
+                 qname="ns1:RequestMessage"
+                 xmlns:ns1="http://localhost:8080/services/ResDongMsg"
+    />
   </service>
 
   <handler name="soapmonitor" type="java:org.apache.axis.handlers.SOAPMonitorHandler">

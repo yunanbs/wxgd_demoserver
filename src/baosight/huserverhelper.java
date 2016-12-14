@@ -1,8 +1,12 @@
 package baosight;
 
+import huabasedataserver.BasicDataImplServiceLocator;
+import huabasedataserver.IbasicData;
 import org.apache.commons.lang3.StringUtils;
 
+import javax.xml.rpc.ServiceException;
 import java.lang.reflect.Field;
+import java.rmi.RemoteException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,21 +18,25 @@ import java.util.regex.Pattern;
  * Created by Administrator on 2016/11/18.
  */
 public class huserverhelper {
-    public static String getdbsql(String infotype, String smathname, String sDatastr,String sportname) {
+    public static String getdbsql(String infotype, String smathname, String sDatastr,String sportname) throws Exception {
         String result = "";
         //自定义服务名称
         String classname = "";
         String portname =sportname.equals("")?"getBasicDataImplPort":sportname;
         String mathname = smathname;
-
+        //IbasicData client = null;
+        //getBasicDataImplPort()
         switch (infotype)//定义反射对象的类名
         {
             case "sgdd":
                 classname = "sgddbasedataserver.BasicDataImplServiceLocator";
                 break;
 
-            case "cwpd":
-                classname = "";
+            case "cwpb":
+                classname = "huabasedataserver.BasicDataImplServiceLocator";
+                //huabasedataserver.BasicDataImplServiceLocator serviceLocator = new huabasedataserver.BasicDataImplServiceLocator();
+                //client = serviceLocator.getBasicDataImplPort().
+                //client = (IbasicData) serviceLocator.getClass().getMethod(portname).invoke(serviceLocator);
                 break;
 
             default:
