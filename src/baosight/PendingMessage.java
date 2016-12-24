@@ -1,9 +1,11 @@
 package baosight;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/12/1.
  */
-public class PendingMessage {
+public class PendingMessage implements Serializable {
     //待办人标识
     private String pprincipal;
     //待办状态

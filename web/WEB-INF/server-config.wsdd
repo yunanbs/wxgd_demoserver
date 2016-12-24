@@ -96,6 +96,14 @@
                  qname="ns1:RequestMessage"
                  xmlns:ns1="http://localhost:8080/services/ResDongMsg"
     />
+    <beanMapping languageSpecificType="java:baosight.ResponseMessage"
+                 qname="ns1:ResponseMessage"
+                 xmlns:ns1="http://localhost:8080/services/ResDongMsg"
+    />
+    <beanMapping languageSpecificType="java:baosight.ErrorMessage"
+                 qname="ns1:ErrorMessage"
+                 xmlns:ns1="http://localhost:8080/services/ResDongMsg"
+    />
   </service>
 
   <handler name="soapmonitor" type="java:org.apache.axis.handlers.SOAPMonitorHandler">

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://baosight" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://baosight" xmlns:intf="http://baosight" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://baosight" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <complexType name="PendingMessage">
+    <sequence>
+     <element name="numlimit" nillable="true" type="xsd:string"/>
+     <element name="pprincipal" nillable="true" type="xsd:string"/>
+     <element name="pscode" nillable="true" type="xsd:string"/>
+     <element name="pstatus" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="pendingMessage" type="impl:PendingMessage"/>
+   <complexType name="ErrorMessage">
+    <sequence>
+     <element name="errorCode" nillable="true" type="xsd:string"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <complexType name="ResponseMessage">
+    <sequence>
+     <element name="content" nillable="true" type="xsd:string"/>
+     <element name="errorMessage" nillable="true" type="impl:ErrorMessage"/>
+     <element name="resultList" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+     <element name="state" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+   <element name="tmpDongDataReturn" type="impl:ResponseMessage"/>
+   <element name="pendingMessage1" type="impl:PendingMessage"/>
+   <element name="todolistReturn" type="xsd:string"/>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://xml.apache.org/xml-soap" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://baosight"/>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="todolistResponse">
+
+      <wsdl:part element="impl:todolistReturn" name="todolistReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="todolistRequest">
+
+      <wsdl:part element="impl:pendingMessage1" name="pendingMessage"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="tmpDongDataRequest">
+
+      <wsdl:part element="impl:pendingMessage" name="pendingMessage"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="tmpDongDataResponse">
+
+      <wsdl:part element="impl:tmpDongDataReturn" name="tmpDongDataReturn"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ResDongMsg">
+
+      <wsdl:operation name="tmpDongData" parameterOrder="pendingMessage">
+
+         <wsdl:input message="impl:tmpDongDataRequest" name="tmpDongDataRequest"/>
+
+         <wsdl:output message="impl:tmpDongDataResponse" name="tmpDongDataResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="todolist" parameterOrder="pendingMessage">
+
+         <wsdl:input message="impl:todolistRequest" name="todolistRequest"/>
+
+         <wsdl:output message="impl:todolistResponse" name="todolistResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ResDongMsgSoapBinding" type="impl:ResDongMsg">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="tmpDongData">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="tmpDongDataRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="tmpDongDataResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="todolist">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="todolistRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="todolistResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ResDongMsgService">
+
+      <wsdl:port binding="impl:ResDongMsgSoapBinding" name="ResDongMsg">
+
+         <wsdlsoap:address location="http://localhost:8080//services/baosight/ResDongMsg"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

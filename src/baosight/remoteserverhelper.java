@@ -86,9 +86,11 @@ public class remoteserverhelper {
 
                 noun = "allUserList";
                 obj_code = "psnstr";
+                break;
 
             case "ssdd":
                 classname = "sgddbasedataserver.BasicDataImplServiceLocator";
+                break;
             default:
                 break;
         }

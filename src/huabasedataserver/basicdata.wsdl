@@ -1,0 +1,128 @@
+<?xml version="1.0" ?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.basicdata.webservice.wx.eap.hgsoft.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://basicdata.webservice.wx.eap.hgsoft.com/" name="BasicDataImplService" targetNamespace="http://impl.basicdata.webservice.wx.eap.hgsoft.com/">
+    <wsdl:import location="http://wxcwms.wxmetro.net:80/wxcwpb/webservice/basicdata?wsdl=IbasicData.wsdl" namespace="http://basicdata.webservice.wx.eap.hgsoft.com/"></wsdl:import>
+    <wsdl:binding name="BasicDataImplServiceSoapBinding" type="ns1:IbasicData">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+        <wsdl:operation name="addUser">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="addUser">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="addUserResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateJob">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="updateJob">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="updateJobResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="toDoList">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="toDoList">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="toDoListResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="doAccount">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="doAccount">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="doAccountResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addAccount">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="addAccount">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="addAccountResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delUser">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="delUser">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="delUserResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addJob">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="addJob">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="addJobResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delAccount">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="delAccount">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="delAccountResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateUser">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="updateUser">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="updateUserResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delOrg">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="delOrg">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="delOrgResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="addOrg">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="addOrg">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="addOrgResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="delJob">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="delJob">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="delJobResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateOrg">
+            <soap:operation soapAction="" style="document"></soap:operation>
+            <wsdl:input name="updateOrg">
+                <soap:body use="literal"></soap:body>
+            </wsdl:input>
+            <wsdl:output name="updateOrgResponse">
+                <soap:body use="literal"></soap:body>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="BasicDataImplService">
+        <wsdl:port binding="tns:BasicDataImplServiceSoapBinding" name="BasicDataImplPort">
+            <soap:address location="http://wxcwms.wxmetro.net:80/wxcwpb/webservice/basicdata"></soap:address>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

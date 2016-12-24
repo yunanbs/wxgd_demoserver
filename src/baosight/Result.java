@@ -1,9 +1,11 @@
 package baosight;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/12/1.
  */
-public class Result {
+public class Result implements Serializable {
     //待办编码
     private String pcode;
     //待办公文类型

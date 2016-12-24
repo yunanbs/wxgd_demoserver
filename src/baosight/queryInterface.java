@@ -19,7 +19,7 @@ import com.sun.org.glassfish.gmbal.Description;
 
 import net.sf.json.*;
 import org.apache.commons.lang3.SystemUtils;
-
+import serverNoticeInterface.*;
 
 
 public class queryInterface {
@@ -118,4 +118,35 @@ public class queryInterface {
 		}
 		return passwdlist;
 	}*/
+
+	public  void obtainPsnid(String noun,String verb) throws Exception {
+		String pstatus = "";
+		String syscode = "";
+		serverNoticeInterface.NoticeInterfaceServiceLocator serviceLocator = new serverNoticeInterface.NoticeInterfaceServiceLocator();
+		serverNoticeInterface.NoticeInterface noticeInterface = serviceLocator.getNoticeService();
+		serverNoticeInterface.Message message =new serverNoticeInterface.Message();
+		serverNoticeInterface.RequestMessage requestMessage = new serverNoticeInterface.RequestMessage();
+		requestMessage.setNoun(noun);
+		requestMessage.setVerb(verb);
+		//List<String> psnidList = new ArrayList<>();
+		String psnid = "";
+		String queryPsnid = "select psnid from usertable";
+		//执行sql
+		JSONObject userpasswd = dbhelpser.Excutesql(utils.getpropertieval("s_dbname", "dbconfig.properties"), utils.getpropertieval("s_dbuser", "dbconfig.properties"), utils.getpropertieval("s_dbpassword", "dbconfig.properties"), null, null, queryPsnid);
+		//取出JSONArray
+		JSONArray data = userpasswd.getJSONArray("data");
+		//遍历
+		for (int i = 0; i <data.size() ; i++) {
+			JSONObject jsondata = data.getJSONObject(i);
+			psnid = jsondata.getString("psnid");
+			message.setUserId(psnid);
+			message.setPstatus(pstatus);
+			message.setSyscode(syscode);
+			requestMessage.setMessage(message);
+			noticeInterface.setData(requestMessage);
+			Thread.sleep(500);
+			//psnidList.add(psnid);
+		}
+
+	}
 }
